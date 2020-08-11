@@ -1,0 +1,96 @@
+{
+  "productlist": [
+    {
+      "id": 1,
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/1673725/2018/2/16/11518766944851-Roadster-Men-Navy-Striped-Round-Neck-T-shirt-4281518766944542-1.jpg",
+      "price": "500",
+      "value": "T-Shirt"
+    },
+    {
+      "value": "jacket",
+      "Price": "12454",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/5393444/2018/10/11/b7daceca-84c3-4349-931f-7f17c156cb1d1539254460524-HRX-by-Hrithik-Roshan-Men-Jackets-5691539254459832-1.jpg",
+      "id": 4
+    },
+    {
+      "value": "shoes",
+      "Price": "1212",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/6/7/503e72dd-0f42-4304-87b5-f1627b396e7f1559852897806-1.jpg",
+      "id": 5
+    },
+    {
+      "value": "Jeans",
+      "Price": "7878",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/11165318/2020/2/19/77306d10-e7b8-44f9-9db8-48e891342f111582110189334-Levis-Men-Jeans-5241582110186388-1.jpg",
+      "id": 6
+    },
+    {
+      "value": "Kurta",
+      "Price": "1212",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/10493024/2019/8/29/b5de13e4-81e7-48b0-a2ea-bbc817c5b2eb1567068129053-See-Designs-Men-Black-Solid-Straight-Kurta-5451567068127780-1.jpg",
+      "id": 7
+    }
+  ],
+  "stocks": [
+    {
+      "id": 1,
+      "product_name": "T-Shirt",
+      "week1": "10",
+      "week2": "20",
+      "week3": "5",
+      "week4": "6",
+      "week5": "3",
+      "week6": "17"
+    },
+    {
+      "product_name": "Shirt",
+      "id": 2,
+      "week1": "1",
+      "week2": "8",
+      "week3": "31",
+      "week4": "11",
+      "week5": "6",
+      "week6": "3"
+    },
+    {
+      "id": 3,
+      "product_name": "Jeans",
+      "week1": "5",
+      "week2": "9",
+      "week3": "7",
+      "week4": "15",
+      "week5": "11",
+      "week6": "2"
+    },
+    {
+      "id": 5,
+      "product_name": "Shirt",
+      "week1": "6",
+      "week2": "10",
+      "week3": "11",
+      "week4": "6",
+      "week5": "15",
+      "week6": "3"
+    },
+    {
+      "id": 6,
+      "product_name": "Dress",
+      "week1": "22",
+      "week2": "21",
+      "week3": "21",
+      "week4": "20",
+      "week5": "18",
+      "week6": "15"
+    },
+    {
+      "id": 7,
+      "product_name": "Dress",
+      "week1": "11",
+      "week2": "4",
+      "week3": "17",
+      "week4": "25",
+      "week5": "16",
+      "week6": "7"
+    }
+  ]
+}

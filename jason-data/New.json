@@ -1,0 +1,40 @@
+{
+  "productlist": [
+    {
+      "id": 1,
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/1673725/2018/2/16/11518766944851-Roadster-Men-Navy-Striped-Round-Neck-T-shirt-4281518766944542-1.jpg",
+      "price": "600",
+      "value": "T-Shirtr"
+    },
+    {
+      "id": 2,
+      "value": "Shirt",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/7460073/2018/9/21/1c88b4ea-b2b3-4c75-b1f5-82bff7252d8b1537519651731-NA-1711537519651556-1.jpg",
+      "price": "501"
+    },
+    {
+      "id": 3,
+      "value": "Jeans",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/10376109/2019/8/16/e674bb50-8e24-4ef4-9058-12cc9cf2b3a91565944241965-HM-Men-Grey-Slim-Jeans-2551565944241668-1.jpg",
+      "price": "1500"
+    },
+    {
+      "id": 4,
+      "value": "Anklettt",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/2324735/2018/1/16/11516091736502-PRITA-Oxidised-Silver-Toned--Black-Beaded-Anklets-601516091736427-1.jpg",
+      "price": "80"
+    },
+    {
+      "id": 5,
+      "value": "Bag",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/8376999/2019/1/16/ee7448f1-1915-46fe-9204-61bc75c7df531547635381768-Lino-Perros-Off-White-Quilted-Handheld-Bag-4051547635379760-1.jpg",
+      "price": "1600"
+    },
+    {
+      "id": 6,
+      "value": "Kurta",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/9035869/2019/3/22/a837344d-9e4f-4e41-9b5b-b1d4761608541553231052357-Rain--Rainbow-Women-Tunics-7381553231050679-1.jpg",
+      "price": "860"
+    }
+  ]
+}

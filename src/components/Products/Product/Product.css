@@ -1,0 +1,8 @@
+.grid {
+  height: auto;
+  width: auto;
+  float: left;
+  margin-left: 80px;
+  margin-top: 50px;
+  border: solid black;
+}
