@@ -39,7 +39,7 @@ class Dashboard extends Component {
 
   getStockInfo = (id) => {
     axios
-      .get("http://localhost:3000/stocks/" + id)
+      .get("http://localhost:3008/stocks/" + id)
 
       .then(
         (response) => {

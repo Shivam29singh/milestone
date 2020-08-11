@@ -46,7 +46,7 @@ class AddProduct extends React.Component {
       img: this.state.productimg,
       //   product_quantity: this.state.productquantity,
     };
-    axios.post("  http://localhost:3000/productlist", productRequestBody).then(
+    axios.post("  http://localhost:3008/productlist", productRequestBody).then(
       (response) => {
         console.log(response);
         this.props.history.push("/Home");

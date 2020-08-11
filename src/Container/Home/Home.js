@@ -37,7 +37,7 @@ class Home extends Component {
     });
   };
   getAllProducts = () => {
-    axios.get(" http://localhost:3000/productlist").then(
+    axios.get(" http://localhost:3008/productlist").then(
       (response) => {
         console.log(response);
         console.log(response.data);

@@ -10,7 +10,7 @@ class Product extends Component {
   };
   deleteId = (id) => {
     console.log("delete friend for received id: " + id);
-    axios.delete("http://localhost:3000/productlist/" + id).then(
+    axios.delete("http://localhost:3008/productlist/" + id).then(
       (response) => {
         this.setState({ deleteSuccess: true });
       },

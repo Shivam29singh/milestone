@@ -25,7 +25,7 @@ class EditProduct extends React.Component {
     if (this.props.location.state !== undefined) {
       axios
         .get(
-          "http://localhost:3000/productlist/" + this.props.location.state.myid
+          "http://localhost:3008/productlist/" + this.props.location.state.myid
         )
 
         .then(
