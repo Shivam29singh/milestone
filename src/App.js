@@ -5,9 +5,8 @@ import Home from "./Container/Home/Home";
 import EditProduct from "./components/Products/EditProduct/EditProduct";
 import { BrowserRouter, Route } from "react-router-dom";
 import AddProduct from "./components/Products/AddProduct/addproduct";
-// import MyProfile from "./components/MyProfile/Product";
+
 import Dashboard from "./Container/dashboard/dashboard";
-// import EditProduct from "./components/editProduct";
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
         <Route exact path="/register" component={Signup} />
         <Route exact path="/Login" component={Login} />
         <Route exact path="/Home" component={Home} />
-        {/* <Route exact path="/Myprofile" component={MyProfile} /> */}
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/AddProduct" component={AddProduct} />
 

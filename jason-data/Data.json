@@ -1,34 +1,63 @@
 {
   "productlist": [
     {
-      "id": 1,
-      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/1673725/2018/2/16/11518766944851-Roadster-Men-Navy-Striped-Round-Neck-T-shirt-4281518766944542-1.jpg",
-      "price": "500",
-      "value": "T-Shirt"
+      "value": "shirt",
+      "price": "1",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/7228316/2019/1/30/4d826b89-0119-4c89-8861-4a8cea8ed0691548844555754-DILLINGER-Men-Navy-Blue-Colourblocked-Round-Neck-T-shirt-161-1.jpg",
+      "category": "clothing",
+      "id": 1
     },
     {
-      "value": "jacket",
-      "Price": "12454",
-      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/5393444/2018/10/11/b7daceca-84c3-4349-931f-7f17c156cb1d1539254460524-HRX-by-Hrithik-Roshan-Men-Jackets-5691539254459832-1.jpg",
+      "value": "laptop",
+      "price": "7",
+      "img": "https://rukminim1.flixcart.com/image/312/312/j5ws0i80/computer/g/p/d/acer-na-notebook-original-imaewhwtbtzwe7ct.jpeg?q=70",
+      "category": "electronics",
+      "id": 3
+    },
+    {
+      "value": "mobile",
+      "price": "8",
+      "img": "https://rukminim1.flixcart.com/image/312/312/jnj7iq80/mobile/u/b/g/apple-iphone-xr-mryj2hn-a-original-imafa6zkm7qhv2zd.jpeg?q=70",
+      "category": "electronics",
       "id": 4
     },
     {
-      "value": "shoes",
-      "Price": "1212",
-      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/productimage/2019/6/7/503e72dd-0f42-4304-87b5-f1627b396e7f1559852897806-1.jpg",
+      "value": "sofa",
+      "price": "3",
+      "img": "https://rukminim1.flixcart.com/image/612/612/jvv9zm80/sofa-sectional/v/5/g/beige-cotton-blend-croma-3-seater-sofa-in-beige-brown-color-original-imafghzgtnyjpaum.jpeg?q=70",
+      "category": "furniture",
       "id": 5
     },
     {
-      "value": "Jeans",
-      "Price": "7878",
-      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/11165318/2020/2/19/77306d10-e7b8-44f9-9db8-48e891342f111582110189334-Levis-Men-Jeans-5241582110186388-1.jpg",
+      "value": "chair",
+      "price": "9",
+      "img": "https://rukminim1.flixcart.com/image/612/612/jrf8o7k0/recliner/a/y/d/coffee-bean-cotton-frcbb1-furlay-original-imafd4qtgpdttypz.jpeg?q=70",
+      "category": "furniture",
       "id": 6
     },
     {
-      "value": "Kurta",
-      "Price": "1212",
-      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/10493024/2019/8/29/b5de13e4-81e7-48b0-a2ea-bbc817c5b2eb1567068129053-See-Designs-Men-Black-Solid-Straight-Kurta-5451567068127780-1.jpg",
+      "value": "jeans",
+      "price": "12",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/11359050/2020/8/3/662857f1-077b-49ac-8983-af3da50c70e01596432715832-WROGN-Men-Jeans-2591596432713788-1.jpg",
+      "category": "clothing",
       "id": 7
+    },
+    {
+      "value": "jeans",
+      "price": "12",
+      "img": "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/5669588/2018/6/12/0dcec4bb-3be9-4c67-9d9a-ecdcc937f98d1528807434080-Roadster-Men-Blue-Skinny-Fit-Mid-Rise-Mildly-Distressed-Stretchable-Jeans-4491528807433906-1.jpg",
+      "category": "colthing",
+      "id": 8
+    }
+  ],
+  "allCategories": [
+    {
+      "id": 1,
+      "category_name": "Electronics"
+    },
+    {
+      "id": 2,
+      "category_name": "Accessories"
     }
   ],
   "stocks": [
@@ -91,6 +120,40 @@
       "week4": "25",
       "week5": "16",
       "week6": "7"
+    }
+  ],
+  "Users": [
+    {
+      "firstName": "simran",
+      "lastName": "kamboj",
+      "mobile": "09501187108",
+      "email": "nishukamboj97@gmail.com",
+      "password": "Simr@n97",
+      "id": 1
+    },
+    {
+      "firstName": "simran",
+      "lastName": "kamboj",
+      "mobile": "09501187108",
+      "email": "nishukamboj97@gmail.com",
+      "password": "Simr@n97",
+      "id": 2
+    },
+    {
+      "firstName": "sim",
+      "lastName": "gulia",
+      "mobile": "09501187108",
+      "email": "kpgulia03@gmail.com",
+      "password": "Simt@b89",
+      "id": 3
+    },
+    {
+      "firstName": "Shivam",
+      "lastName": "Singh",
+      "mobile": "08770151363",
+      "email": "singhshivam1221@hotmail.com",
+      "password": "Shiv123@am",
+      "id": 4
     }
   ]
 }

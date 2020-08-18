@@ -70,7 +70,7 @@ class EditProduct extends React.Component {
 
     axios
       .patch(
-        "http://localhost:3000/productlist/" + this.state.id,
+        "http://localhost:3008/productlist/" + this.state.id,
         productRequestBody
       )
 

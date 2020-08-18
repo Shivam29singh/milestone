@@ -54,30 +54,23 @@ class Product extends Component {
     }
     return (
       <div className="grid">
-        <Card style={{ width: 200 }} className="cards">
+        <Card style={{ width: 250, height: 450 }} className="cards">
           <Card.Img
             variant="top"
             src={this.props.image}
             onClick={this.getStock}
+            style={{ width: 250, height: 300, padding: "10px" }}
           />
           <Card.Body>
             <Card.Title>Product:{this.props.name}</Card.Title>
             <Card.Text>
               Price:
               {this.props.price}
-              {/* <Card.Text>Quantity:{this.props.quantity}</Card.Text> */}
               <br />
               <br />
-              <button onClick={this.editProductWithId} className="btn-edit">
-                Edit
-              </button>
+              <button onClick={this.editProductWithId}>Edit</button>
               &nbsp;
-              <button
-                onClick={this.deleteCurrentProduct}
-                className="btn-delete"
-              >
-                Delete
-              </button>
+              <button onClick={this.deleteCurrentProduct}>Delete</button>
             </Card.Text>
           </Card.Body>
         </Card>

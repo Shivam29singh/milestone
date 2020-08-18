@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Product from "../../components/Products/Product/Product";
 import axios from "axios";
+import "./Home.css";
 import { Form, Button } from "react-bootstrap";
 
 class Home extends Component {
@@ -10,7 +11,9 @@ class Home extends Component {
     this.state = {
       productList: [],
       searchFriends: [],
+      categoryProducts: [],
       searchValue: "",
+
       myid: 0,
     };
   }
@@ -20,7 +23,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   intializeState = () => {
@@ -40,16 +43,24 @@ class Home extends Component {
     axios.get(" http://localhost:3008/productlist").then(
       (response) => {
         console.log(response);
+
         console.log(response.data);
+
         this.setState({ productList: response.data });
+
         this.setState({ searchProducts: response.data });
+
+        this.setState({ categoryProducts: response.data });
+
         console.log(this.state.productList);
       },
+
       (error) => {
         console.error(error);
       }
     );
   };
+
   openAddProduct = () => {
     this.props.history.push("/addProduct");
   };
@@ -60,7 +71,7 @@ class Home extends Component {
       this.getAllProducts();
     }
     this.setState({ searchValue: searchV });
-    console.log(searchV);
+    console.log(searchV, this.state.productList);
     let searchF = this.state.productList.filter((f) => {
       console.log(f.value);
       return f.value.toLowerCase().match(searchV.toLowerCase());
@@ -78,6 +89,7 @@ class Home extends Component {
           name={product.value}
           price={product.price}
           image={product.img}
+          category={product.category}
           deleteId={this.deleteProductWithId}
           editId={this.editProductWithId}
           stockId={this.getStocks}
@@ -85,41 +97,60 @@ class Home extends Component {
       );
     });
   };
-  getStocks = (id) => {
-    this.setState({ myid: id });
 
-    console.log("Product Stock with id: " + id);
+  categoryFilter = (event) => {
+    let categoryV = event.target.value;
 
-    this.props.history.push({
-      pathname: "/dashboard",
+    if (categoryV !== " ") {
+      this.setState({ categoryValue: categoryV });
 
-      state: { myid: id },
-    });
+      let categoryP = this.state.categoryProducts.filter((f) => {
+        return f.category.match(categoryV);
+      });
+
+      this.setState({ productList: categoryP });
+    } else {
+      this.getAllProducts();
+    }
   };
   render() {
     return (
       <div>
         <Navbar />
-        <Form>
+        <Form className="style">
           <span>
-            {/* <FormControl
-              type="text"
-              placeholder="Search"
-              onChange={this.getSearch}
-              className="mr-sm-1"
-            />
-
-            <Button variant="outline-primary">Search</Button> */}
             <br></br>
-            <label>Search: </label>
             <input
+              placeholder="search here..."
               type="text"
               value={this.state.searchValue}
               onChange={this.getSearch}
+              style={{ marginLeft: 400 }}
             ></input>
-            SearchValue: {this.state.searchValue}
+            <label style={{ paddingLeft: "15px" }}>Category Filter: </label>
+
+            <select
+              defaultValue={"DEFAULT"}
+              id="category"
+              name="category :"
+              onChange={this.categoryFilter}
+            >
+              <option value="DEFAULT" disabled>
+                Choose a category ...
+              </option>
+              <option value="" selected="true">
+                Select
+              </option>
+
+              <option value="electronics">Electronics</option>
+
+              <option value="clothing">Clothing</option>
+
+              <option value="furniture">Furniture</option>
+            </select>
+            {/* SearchValue: {this.state.searchValue} */}
             <Button
-              style={{ float: "right", height: "40px" }}
+              style={{ height: "40px", marginLeft: 50, marginRight: 100 }}
               onClick={this.openAddProduct}
               variant="outline-primary"
             >

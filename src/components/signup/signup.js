@@ -2,7 +2,9 @@ import React from "react";
 import { Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import "./signup.css";
 import { Link, Redirect } from "react-router-dom";
-// import logo from "../../asset/logo.png";
+import { Container } from "react-bootstrap";
+import axios from "axios";
+const SIGNUP_ERROR = "Please try again later.";
 
 function passwordValidate(pass) {
   const strongRegex = new RegExp(
@@ -58,6 +60,8 @@ export default class SignupComponent extends React.Component {
       // dob: "",
       mobile: "",
       LoggedIn: false,
+      signupSuccess: false,
+      signupError: false,
     };
   }
 
@@ -88,167 +92,172 @@ export default class SignupComponent extends React.Component {
     event.target.className += " was-validated";
 
     if (errors.length > 0) {
-      console.log(errors);
       return;
     } else {
-      console.log("good to go");
-      // return (
-      //   <Redirect
-      //     to={{
-      //       pathname: "/Login",
-      //     }}
-      //   />
-      // );
-      this.setState({
-        LoggedIn: true,
-      });
+      var signupData = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        mobile: this.state.mobile,
+        email: this.state.email,
+        password: this.state.password,
+      };
+      axios
+        .post("http://localhost:3008/users", signupData)
+        .then((response) => {
+          console.log(response);
+          if (response.status === 201) {
+            this.setState({
+              signupSuccess: true,
+              signupError: false,
+              signupMessage: response.message,
+            });
+          }
+        })
+        .catch((err) => {
+          var errorResponse = "";
+          if (err.response) errorResponse = err.response.data.message;
+          else errorResponse = SIGNUP_ERROR;
+
+          this.setState({
+            signupError: true,
+            signupSuccess: false,
+            errorMessage: errorResponse,
+          });
+        });
     }
   };
 
   render() {
-    if (this.state.LoggedIn)
+    if (this.state.signupSuccess)
       return (
         <Redirect
           to={{
-            pathname: "/Login",
+            pathname: "./Login",
           }}
         />
       );
     return (
-      <React.Fragment>
-        <div className="container_main">
-          <div className="brand_logo_container">
-            {/* <img src={logo} alt="logo" className="brand_logo" /> */}
-          </div>
-          <form
-            className="signup-form"
-            onSubmit={this.submitSignUpRequest}
-            noValidate
-          >
-            <Row>
-              <Col>
-                <Form.Group controlId="formSignUpFirstName">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter First Name"
-                    onChange={this.handleFirstNameChange}
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please provide First Name
-                  </div>
-                </Form.Group>
-              </Col>
-
-              <Col>
-                <Form.Group controlId="formSignUpLastName">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter Last Name"
-                    onChange={this.handleLastNameChange}
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please provide Last Name
-                  </div>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Group controlId="formSignUpEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    onChange={this.handleEmailChange}
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please provide a valid email
-                  </div>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Group controlId="formSignUpPassword">
-                  <Form.Label>Password</Form.Label>
-                  <InputGroup>
+      <Container>
+        <React.Fragment>
+          <div className="container_main">
+            <div className="brand_logo_container">
+              {/* <img src={logo} alt="logo" className="brand_logo" /> */}
+            </div>
+            <form
+              className="signup-form"
+              onSubmit={this.submitSignUpRequest}
+              noValidate
+            >
+              <Row>
+                <Col>
+                  <Form.Group controlId="formSignUpFirstName">
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control
-                      placeholder="Password"
-                      type={this.state.hiddenPassword ? "password" : "text"}
-                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                      value={this.state.password}
-                      onChange={this.handlePasswordChange}
+                      type="text"
+                      placeholder="Enter First Name"
+                      onChange={this.handleFirstNameChange}
                       required
                     />
                     <div className="invalid-feedback">
-                      Password must be 6 characters long It should contain a
-                      number and <br></br> contain , uppercase and lowercase
-                      letter
+                      Please provide First Name
                     </div>
-                  </InputGroup>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              {/* <Col>
-                <Form.Group controlId="formSignUpDob">
-                  <Form.Label>Date of birth</Form.Label>
-                  <Form.Control
-                    placeholder=""
-                    type="date"
-                    onChange={this.handleDOBChange}
-                    required
-                  />
-                  <div className="invalid-feedback">
-                    Please select Date of Birth
-                  </div>
-                </Form.Group>
-              </Col> */}
+                  </Form.Group>
+                </Col>
 
-              <Col>
-                <Form.Group controlId="formSignUpMobile">
-                  <Form.Label>Contact Number</Form.Label>
-                  <Form.Control
-                    placeholder="Contact Number"
-                    type="text"
-                    pattern="[0-9]+"
-                    required
-                    onChange={this.handleMobileChange}
-                  />
-                  <div className="invalid-feedback">
-                    Please enter your contact number
-                  </div>
-                </Form.Group>
-              </Col>
-            </Row>
+                <Col>
+                  <Form.Group controlId="formSignUpLastName">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Last Name"
+                      onChange={this.handleLastNameChange}
+                      required
+                    />
+                    <div className="invalid-feedback">
+                      Please provide Last Name
+                    </div>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group controlId="formSignUpEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
+                      onChange={this.handleEmailChange}
+                      required
+                    />
+                    <div className="invalid-feedback">
+                      Please provide a valid email
+                    </div>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group controlId="formSignUpPassword">
+                    <Form.Label>Password</Form.Label>
+                    <InputGroup>
+                      <Form.Control
+                        placeholder="Password"
+                        type={this.state.hiddenPassword ? "password" : "text"}
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                        required
+                      />
+                      <div className="invalid-feedback">
+                        Password must be 6 characters long It should contain a
+                        number and <br></br> contain , uppercase and lowercase
+                        letter
+                      </div>
+                    </InputGroup>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group controlId="formSignUpMobile">
+                    <Form.Label>Contact Number</Form.Label>
+                    <Form.Control
+                      placeholder="Contact Number"
+                      type="text"
+                      pattern="[0-9]+"
+                      required
+                      onChange={this.handleMobileChange}
+                    />
+                    <div className="invalid-feedback">
+                      Please enter your contact number
+                    </div>
+                  </Form.Group>
+                </Col>
+              </Row>
 
-            <Row>
-              <Col>
-                <Button
-                  variant="outline-dark"
-                  type="submit"
-                  className="btn-signup"
-                  size="lg"
-                  block
-                >
-                  Sign Up
-                </Button>
-                <br></br>
-                <Row>
-                  <Col>
-                    <Link to="/Login">Already a member?SignIn</Link>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </form>
-        </div>
-      </React.Fragment>
+              <Row>
+                <Col>
+                  <Button
+                    variant="outline-dark"
+                    type="submit"
+                    className="btn-signup"
+                    size="lg"
+                    block
+                  >
+                    Sign Up
+                  </Button>
+                  <br></br>
+                  <Row>
+                    <Col>
+                      <Link to="/Login">Already a member?SignIn</Link>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </form>
+          </div>
+        </React.Fragment>
+      </Container>
     );
   }
 }

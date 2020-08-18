@@ -1,60 +1,94 @@
 import React from "react";
+import "./addproduct.css";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container, Col, Form, Row, Button } from "react-bootstrap";
 
+function validate(value, price, img, category) {
+  const errors = [];
+
+  if (value.length <= 0) {
+    errors.push("Email should be at least 5 charcters long");
+  }
+  if (price <= 0) {
+    errors.push("Email should be at least 5 charcters long");
+  }
+  if (img.length <= 0) {
+    errors.push("Email should be at least 5 charcters long");
+  }
+  if (category.length <= 0) {
+    errors.push("Email should be at least 5 charcters long");
+  }
+
+  return errors;
+}
 class AddProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productname: "",
-      productprice: 0,
-      productcategory: "",
-      productimg: "",
-      productquantity: 0,
+      value: "",
+      price: 0,
+      category: "",
+      img: "",
+      quantity: 0,
     };
   }
 
   getName = (event) => {
-    this.setState({ productname: event.target.value });
+    this.setState({ value: event.target.value });
   };
 
   getPrice = (event) => {
-    this.setState({ productprice: event.target.value });
+    this.setState({ price: event.target.value });
   };
 
   getQuantity = (event) => {
-    this.setState({ productquantity: event.target.value });
+    this.setState({ quantity: event.target.value });
   };
 
   getCategory = (event) => {
     console.log(event.target.value);
-    this.setState({ productcategory: event.target.value });
+    this.setState({ category: event.target.value });
   };
 
   getImage = (event) => {
     console.log(event.target.value);
-    this.setState({ productimg: event.target.value });
-    console.log(this.state.productimg);
+    this.setState({ img: event.target.value });
+    console.log(this.state.img);
   };
 
-  addproduct = () => {
-    console.log("Add product via axios and post");
-    let productRequestBody = {
-      value: this.state.productname,
-      Price: this.state.productprice,
-      //   category_name: this.state.productcategory,
-      img: this.state.productimg,
-      //   product_quantity: this.state.productquantity,
-    };
-    axios.post("  http://localhost:3008/productlist", productRequestBody).then(
-      (response) => {
-        console.log(response);
-        this.props.history.push("/Home");
-      },
-      (error) => {
-        console.error(error);
-      }
+  addproduct = (event) => {
+    event.preventDefault();
+    const errors = validate(
+      this.state.value,
+      this.state.price,
+      this.state.img,
+      this.state.category
     );
+    console.log("Add product via axios and post");
+    if (errors.length > 0) {
+      this.setState({
+        error: true,
+      });
+      return;
+    } else {
+      let productRequestBody = {
+        value: this.state.value,
+        price: this.state.price,
+        img: this.state.img,
+        category: this.state.category,
+      };
+      axios
+        .post("  http://localhost:3008/productlist", productRequestBody)
+        .then(
+          (response) => {
+            console.log(response);
+            this.props.history.push("/Home");
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+    }
   };
 
   render() {
@@ -62,53 +96,79 @@ class AddProduct extends React.Component {
       <Container>
         <div>
           <h3>Add product!!!!</h3>
-          <form>
-            <label>Name: </label>
-            <br />
-            <input type="text" id="productname" onChange={this.getName}></input>
-            <br></br>
-            <label>Price: </label>
-            <br />
-            <input
-              type="number"
-              id="productprice"
-              onChange={this.getPrice}
-            ></input>
-            <br></br>
-            {/* <label>Quantity: </label>
-          <input
-            type="number"
-            id="productquantity"
-            onChange={this.getQuantity}
-          ></input>
-          <br></br>
-          <label>Category: </label>
-          <input
-            type="text"
-            id="productcategory"
-            onChange={this.getCategory}
-          ></input>
-          <br></br> */}
-            <label>Image Url: </label>
-            <br />
-            <input type="text" id="productimg" onChange={this.getImage}></input>
-            <br></br>
-            <br />
-            <br />
-            <button type="button" onClick={this.addproduct}>
-              Add product
-            </button>
-            <br></br>
-            <Container>
-              <div>
-                <h4>Preview</h4>
-                Product Name: {this.state.productname}
-                <br />
-                <br></br>
-                Product PRICE: {this.state.productprice}
-                <br></br>
-              </div>
-            </Container>
+          <form onSubmit={this.addproduct} noValidate>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Product Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Product Name"
+                    onChange={this.getName}
+                    required={true}
+                  />
+                  <Form.Text className="error">
+                    {this.state.error ? "Please provide name" : ""}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="price"
+                    onChange={this.getPrice}
+                    required={true}
+                  />
+                  <Form.Text className="error">
+                    {this.state.error ? "Please provide Price" : ""}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Image</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={this.getImage}
+                    placeholder="ImageUrl"
+                    required={true}
+                  />
+                  <Form.Text className="error">
+                    {this.state.error ? "Please provide Image" : ""}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={this.getCategory}
+                    placeholder="category"
+                    required={true}
+                  />
+                  <Form.Text className="error">
+                    {this.state.error ? "Please provide Cartegory" : ""}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Button variant="outline-dark" type="submit" size="500px">
+                  Add
+                </Button>
+              </Col>
+            </Row>
           </form>
         </div>
       </Container>

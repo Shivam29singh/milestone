@@ -1,90 +1,44 @@
 import React, { Component } from "react";
 
-import axios from "axios";
-
-// import Chart from "react-google-charts";
-
-import Graph from "../../components/graph/graph";
-
-import { Navbar } from "react-bootstrap";
+import "../dashboard/dashboard.css";
+import Chart from "react-google-charts";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      id: "",
-
-      product_name: "",
-
-      week1: "",
-
-      week2: "",
-
-      week3: "",
-
-      week4: "",
-
-      week5: "",
-
-      week6: "",
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.location.state !== undefined) {
-      this.getStockInfo(this.props.location.state.myid);
-    }
-  }
-
-  getStockInfo = (id) => {
-    axios
-      .get("http://localhost:3008/stocks/" + id)
-
-      .then(
-        (response) => {
-          this.setState({
-            id: id,
-
-            product_name: response.data.product_name,
-
-            week1: response.data.week1,
-
-            week2: response.data.week2,
-
-            week3: response.data.week3,
-
-            week4: response.data.week4,
-
-            week5: response.data.week5,
-
-            week6: response.data.week6,
-          });
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-  };
-
   render() {
     return (
-      <div>
-        <Navbar />
-
-        <div className="dashboard-page">
-          <Graph
-            key={this.state.id}
-            product_name={this.state.product_name}
-            week1={this.state.week1}
-            week2={this.state.week2}
-            week3={this.state.week3}
-            week4={this.state.week4}
-            week5={this.state.week5}
-            week6={this.state.week6}
-          ></Graph>
+      <React.Fragment>
+        <div>
+          <div className="container">
+            <Chart
+              width={"600px"}
+              height={"400px"}
+              chartType="Line"
+              loader={<div>Loading Chart</div>}
+              data={[
+                [
+                  "week",
+                  "shirt",
+                  "microwave",
+                  "laptop",
+                  "sofa",
+                  "painting",
+                  "shoes rack",
+                ],
+                [1, 10, 20, 5, 6, 3, 17],
+                [2, 1, 8, 31, 11, 6, 3],
+                [3, 5, 9, 7, 15, 11, 2],
+                [4, 6, 10, 11, 6, 15, 3],
+                [5, 22, 21, 21, 20, 18, 15],
+                [6, 11, 4, 17, 25, 16, 7],
+              ]}
+              options={{
+                chart: {},
+              }}
+              rootProps={{ "data-testid": "3" }}
+            />
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
