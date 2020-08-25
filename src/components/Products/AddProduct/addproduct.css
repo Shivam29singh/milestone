@@ -1,3 +1,43 @@
-.error {
-  color: brown;
+.container-main {
+  align-items: center;
+
+  height: auto;
+
+  width: 500px;
+
+  margin-top: 100px;
+
+  margin-bottom: auto;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  background: brown;
+
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  padding: 10px;
+
+  border-radius: 10px;
+}
+
+.heading {
+  color: white;
+
+  text-align: center;
+}
+
+.btn-cancel {
+  margin-top: 20px;
+}
+
+.btn-signup {
+  margin-top: 20px;
 }

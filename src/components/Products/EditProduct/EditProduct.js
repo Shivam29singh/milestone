@@ -1,8 +1,11 @@
 import React from "react";
 
+import { Row, Col, Form, Button } from "react-bootstrap";
+
 import axios from "axios";
+
 import "./EditProduct.css";
-import { Container } from "react-bootstrap";
+
 class EditProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -15,15 +18,21 @@ class EditProduct extends React.Component {
 
     this.state = {
       name: "",
+
       price: 0,
+
       id: 0,
+
       img: "",
+
+      quantity: "",
     };
   }
 
   componentWillMount() {
     if (this.props.location.state !== undefined) {
       axios
+
         .get(
           "http://localhost:3008/productlist/" + this.props.location.state.myid
         )
@@ -37,11 +46,14 @@ class EditProduct extends React.Component {
 
               price: response.data.price,
 
+              quantity: response.data.quantity,
+
               id: response.data.id,
 
-              img: response.data.img,
+              // img: response.data.img,
             });
           },
+
           (error) => {
             console.error(error);
           }
@@ -57,6 +69,10 @@ class EditProduct extends React.Component {
     this.setState({ name: event.target.value });
   };
 
+  getQuantity = (event) => {
+    this.setState({ quantity: event.target.value });
+  };
+
   editProduct = () => {
     console.log("Edit Product via axios and put");
 
@@ -65,12 +81,16 @@ class EditProduct extends React.Component {
 
       price: this.state.price,
 
-      img: this.state.img,
+      quantity: this.state.quantity,
+
+      // img: this.state.img,
     };
 
     axios
+
       .patch(
         "http://localhost:3008/productlist/" + this.state.id,
+
         productRequestBody
       )
 
@@ -80,6 +100,7 @@ class EditProduct extends React.Component {
 
           this.props.history.push("/Home");
         },
+
         (error) => {
           console.error(error);
         }
@@ -90,70 +111,99 @@ class EditProduct extends React.Component {
     if (this.props.location.state === undefined) {
       return (
         <div>
-          <h1>Pl. go to from home page!!!! </h1>
+          <h1>Error in loading </h1>
         </div>
       );
     }
 
     return (
-      <Container>
-        <div>
+      <React.Fragment>
+        <div className="container-main">
           <div>
-            <h1>Edit Product with id:{this.props.location.state.myid} </h1>
-
-            <div>
-              <h3 style={{ textAlign: "center" }}>Edit Product!!!!</h3>
-
-              <form>
-                <label style={{ textAlign: "center" }}>Id: </label>
-                <br />
-
-                <input type="number" value={this.state.id} readOnly></input>
-
-                <br></br>
-
-                <label style={{}}>Name: </label>
-                <br />
-
-                <input
-                  type="text"
-                  id="Productname"
-                  value={this.state.name}
-                  onChange={this.getName}
-                ></input>
-
-                <br></br>
-
-                <label>Price: </label>
-                <br />
-
-                <input
-                  type="number"
-                  id="ProductPrice"
-                  value={this.state.price}
-                  onChange={this.getPrice}
-                ></input>
-
-                <br />
-                <br />
-
-                <button type="button" onClick={this.editProduct}>
-                  Edit Product
-                </button>
-
-                <br></br>
-
-                <div>
-                  <h4>Preview</h4>
-                  Product Name: {this.state.name}
-                  <br></br>
-                  Product Price: {this.state.price}
-                </div>
-              </form>
-            </div>
+            <h1 className="heading">Edit Product</h1>
           </div>
+
+          <form>
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Id: </Form.Label>
+
+                  <Form.Control type="number" value={this.state.id} readOnly />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>ProductName</Form.Label>
+
+                  <Form.Control
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.getName}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Price </Form.Label>
+
+                  <Form.Control
+                    type="number"
+                    value={this.state.price}
+                    onChange={this.getPrice}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Quantity </Form.Label>
+
+                  <Form.Control
+                    type="number"
+                    value={this.state.quantity}
+                    onChange={this.getQuantity}
+                  />
+                </Form.Group>
+              </Col>
+
+              <Col>
+                <Form.Group>
+                  <Form.Label>Image </Form.Label>
+
+                  <Form.Control
+                    type="number"
+                    value={this.state.Price}
+                    onChange={this.getPrice}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Button
+                  type="button"
+                  onClick={this.editProduct}
+                  variant="outline-dark"
+                  size="lg"
+                  block
+                >
+                  Edit Product
+                </Button>
+              </Col>
+            </Row>
+          </form>
         </div>
-      </Container>
+      </React.Fragment>
     );
   }
 }

@@ -1,7 +1,10 @@
 import React from "react";
-import "./addproduct.css";
+
 import axios from "axios";
-import { Container, Col, Form, Row, Button } from "react-bootstrap";
+
+import { Row, Col, Form, Button } from "react-bootstrap";
+
+import "./addproduct.css";
 
 function validate(value, price, img, category) {
   const errors = [];
@@ -9,26 +12,35 @@ function validate(value, price, img, category) {
   if (value.length <= 0) {
     errors.push("Email should be at least 5 charcters long");
   }
+
   if (price <= 0) {
     errors.push("Email should be at least 5 charcters long");
   }
+
   if (img.length <= 0) {
     errors.push("Email should be at least 5 charcters long");
   }
+
   if (category.length <= 0) {
     errors.push("Email should be at least 5 charcters long");
   }
 
   return errors;
 }
-class AddProduct extends React.Component {
+
+export default class AddProduct extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       value: "",
+
       price: 0,
-      category: "",
+
       img: "",
+
+      category: "",
+
       quantity: 0,
     };
   }
@@ -41,49 +53,69 @@ class AddProduct extends React.Component {
     this.setState({ price: event.target.value });
   };
 
-  getQuantity = (event) => {
-    this.setState({ quantity: event.target.value });
+  getImage = (event) => {
+    console.log(event.target.value);
+
+    this.setState({ img: event.target.value });
+
+    console.log(this.state.img);
   };
 
   getCategory = (event) => {
     console.log(event.target.value);
+
     this.setState({ category: event.target.value });
+
+    console.log(this.state.category);
   };
 
-  getImage = (event) => {
-    console.log(event.target.value);
-    this.setState({ img: event.target.value });
-    console.log(this.state.img);
+  getQuantity = (event) => {
+    this.setState({ quantity: event.target.value });
   };
 
   addproduct = (event) => {
     event.preventDefault();
+
     const errors = validate(
       this.state.value,
+
       this.state.price,
+
       this.state.img,
+
       this.state.category
     );
+
     console.log("Add product via axios and post");
+
     if (errors.length > 0) {
       this.setState({
         error: true,
       });
+
       return;
     } else {
       let productRequestBody = {
         value: this.state.value,
+
         price: this.state.price,
+
         img: this.state.img,
+
         category: this.state.category,
       };
+
       axios
-        .post("  http://localhost:3008/productlist", productRequestBody)
+
+        .post(" http://localhost:3008/productlist", productRequestBody)
+
         .then(
           (response) => {
             console.log(response);
+
             this.props.history.push("/Home");
           },
+
           (error) => {
             console.error(error);
           }
@@ -93,70 +125,63 @@ class AddProduct extends React.Component {
 
   render() {
     return (
-      <Container>
-        <div>
-          <h3>Add product!!!!</h3>
+      <React.Fragment>
+        <div className="container-main">
+          <div>
+            <h1 className="heading">Add Product</h1>
+          </div>
+
           <form onSubmit={this.addproduct} noValidate>
             <Row>
               <Col>
                 <Form.Group>
                   <Form.Label>Product Name</Form.Label>
+
                   <Form.Control
                     type="text"
                     placeholder="Enter Product Name"
                     onChange={this.getName}
                     required={true}
                   />
+
                   <Form.Text className="error">
-                    {this.state.error ? "Please provide name" : ""}
+                    {this.state.error ? "Please provide Name" : ""}
                   </Form.Text>
                 </Form.Group>
               </Col>
-            </Row>
-            <Row>
+
               <Col>
                 <Form.Group>
                   <Form.Label>Price</Form.Label>
+
                   <Form.Control
-                    type="text"
+                    type="number"
                     placeholder="price"
                     onChange={this.getPrice}
                     required={true}
                   />
+
                   <Form.Text className="error">
                     {this.state.error ? "Please provide Price" : ""}
                   </Form.Text>
                 </Form.Group>
               </Col>
             </Row>
+
             <Row>
               <Col>
                 <Form.Group>
                   <Form.Label>Image</Form.Label>
+
                   <Form.Control
                     type="text"
                     onChange={this.getImage}
                     placeholder="ImageUrl"
                     required={true}
                   />
+
                   <Form.Text className="error">
-                    {this.state.error ? "Please provide Image" : ""}
-                  </Form.Text>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Label>Category</Form.Label>
-                  <Form.Control
-                    type="text"
-                    onChange={this.getCategory}
-                    placeholder="category"
-                    required={true}
-                  />
-                  <Form.Text className="error">
-                    {this.state.error ? "Please provide Cartegory" : ""}
+                    {this.state.error ? "Please provide image" : ""}
                   </Form.Text>
                 </Form.Group>
               </Col>
@@ -164,16 +189,56 @@ class AddProduct extends React.Component {
 
             <Row>
               <Col>
-                <Button variant="outline-dark" type="submit" size="500px">
+                <Form.Group>
+                  <Form.Label>Category</Form.Label>
+
+                  <Form.Control
+                    type="text"
+                    placeholder="category"
+                    onChange={this.getCategory}
+                    required={true}
+                  />
+
+                  <Form.Text className="error">
+                    {this.state.error ? "Please provide category" : ""}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+
+              <Col>
+                <Form.Group>
+                  <Form.Label>Quantity</Form.Label>
+
+                  <Form.Control
+                    type="number"
+                    placeholder="Quantity"
+                    onChange={this.getQuantity}
+                    required={true}
+                  />
+
+                  <Form.Text className="error">
+                    {this.state.error ? "Please provide quantity" : ""}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <Button
+                  variant="outline-dark"
+                  type="submit"
+                  size="lg"
+                  block
+                  onClick={this.addproduct}
+                >
                   Add
                 </Button>
               </Col>
             </Row>
           </form>
         </div>
-      </Container>
+      </React.Fragment>
     );
   }
 }
-
-export default AddProduct;
